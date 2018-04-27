@@ -47,7 +47,7 @@ console.log(totalYears);
 const oldest = directors.sort(function(a, b){
     const lastGuy = a.passed - a.year;
     const nextGuy = b.passed - b.year;
-    return lastGuy > nextGuy ? -1 : 1;
+    return lastGuy < nextGuy ? -1 : 1;
 });
 console.table(oldest)
 
@@ -63,21 +63,37 @@ console.log(alpha);
 //8. Reduce exercise
 //Sum up the instances of each of these
 
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+// const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
 
-const transportation = data.reduce(function (obj, quantity) {
-    if (!obj[quantity]) {
-        obj[quantity] = 0;
-    }
-    obj[quantity]++;
-    return obj;
-}, {
-        car: 0,
-        truck: 0,
-        bike: 0,
-        walk: 0,
-        van: 0
-    });
+// const transportation = data.reduce(function (obj, quantity) {
+//     if (!obj[quantity]) {
+//         obj[quantity] = 0;
+//     }
+//     obj[quantity]++;
+//     return obj;
+// }, {
+//         car: 0,
+//         truck: 0,
+//         bike: 0,
+//         walk: 0,
+//         van: 0
+//     });
+
+
+
+// Forma mejorada de hacer lo anterior, también funciona
+
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+    const transportation = data.reduce(function (accumulator, currentValue) {
+      if (!accumulator.hasOwnProperty(currentValue)) {
+        accumulator[currentValue] = 0;
+      }
+      accumulator[currentValue]++;
+      return accumulator;
+    }, {});
+    console.log(transportation);
+// mejorar con captura de pantalla. hasOwnProperty para ver si contiene esa variable
+// en lalinea 100 vemos que estamos creando una propiedad.
 
 console.table(transportation);
 
@@ -89,3 +105,12 @@ const links = Array.from(category.querySelectorAll('a'));
 const de = links
             .map(link => link.textContent)
             .filter(streetName => streetName.includes('by'));
+
+
+
+            // const category = document.querySelector('.mw-category');
+            // const links = Array.from(category.querySelectorAll('a'));
+            // const de = links
+            //                 .map(link => link.textContent)
+            //                 .filter(streetName => streetName.includes('de')); 
+            // Mirar esto bien, mejoras de la parte de María Vedia
