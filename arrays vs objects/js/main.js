@@ -102,4 +102,6 @@ const newPerson = Object.assign({}, person, { name: 'Rosa' });
 console.log(person, newPerson);
 
 const newPersonJSON = JSON.parse(JSON.stringify(person));
-// no es un object, es un string
+// como el objeto como un string (lo copia entero porque es un primitivo)
+//JSON.parse lo paso a objeto otra vez
+
